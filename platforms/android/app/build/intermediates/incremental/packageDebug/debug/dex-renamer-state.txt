@@ -1,0 +1,4 @@
+#Mon Jun 03 15:23:16 CEST 2019
+base.0=F\:\\Documents\\DC\\Cordova\\fyreFestival\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
