@@ -98,9 +98,14 @@
 		background: #fff;
 	}
 
-	#sectionFolio button.active{
+	#sectionFolio button.active {
 		background: #000;
 		color: #fff;
+	}
+
+	#sectionFolio button:not(.active):hover {
+		cursor: pointer;
+		background: #eee;
 	}
 
 
@@ -268,6 +273,7 @@ ons-toolbar > * {
 	padding: 8px 16px;
 	border-radius: 8px;
 	text-decoration: none;
+	font-size: 14px;
 }
 .urgence:visited {
 	color: #FF7617;
@@ -275,10 +281,6 @@ ons-toolbar > * {
 .urgence:hover {
 	background-color: #FF7617;
 	color: #fff;
-}
-.btn.fil-cat:hover {
-	cursor: pointer;
-	background: #eee !important;
 }
 ons-icon.zmdi-menu {
 	color: #FF7617;
