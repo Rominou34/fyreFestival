@@ -259,6 +259,23 @@ ons-toolbar > * {
 .toolbar__title {
 	font-weight: bold;
 }
+.toolbar__right {
+	padding-right: 24px;
+}
+.urgence {
+	color: #FF7617;
+	border: 1px solid #FF7617;
+	padding: 8px 16px;
+	border-radius: 8px;
+	text-decoration: none;
+}
+.urgence:visited {
+	color: #FF7617;
+}
+.urgence:hover {
+	background-color: #FF7617;
+	color: #fff;
+}
 .btn.fil-cat:hover {
 	cursor: pointer;
 	background: #eee !important;
