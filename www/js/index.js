@@ -1,9 +1,7 @@
 window.fn = {};
 
 window.fn.open = function() {
-	console.log("test")
   var menu = document.getElementById('menu');
-  console.log(menu)
   menu.open();
 };
 
@@ -25,6 +23,7 @@ window.fn.load = function(page) {
 document.addEventListener("show", function(e){
 
 	// Get User Position
+	/* *
 	navigator.geolocation.getCurrentPosition(
 
 			function(position){
@@ -43,20 +42,21 @@ document.addEventListener("show", function(e){
 
 
 		);
+	/* */
 
 
-
+	// Si cette page est destination, j'exécute le code correspondant
 	// Je récupère la page qui vient de s'afficher
 	let page = e.target.id;
 	// Si cette page est destination, j'exécute le code correspondant
-	if(page === "destinations"){
+	if(page === "programme"){
 
 		let selectedClass = "";
-		$(".fil-cat").click(function(){ 
-			
-			selectedClass = $(this).attr("data-rel"); 
+		$(".fil-cat").click(function(){
+
+			selectedClass = $(this).attr("data-rel");
 	     	$("#portfolio").fadeTo(100, 0.1);
-			$("#portfolio div").not("."+selectedClass).fadeOut().removeClass('scale-anm');
+			$("#portfolio > div").not("."+selectedClass).fadeOut().removeClass('scale-anm');
 	    	setTimeout(function() {
 
 	      		$("."+selectedClass).fadeIn().addClass('scale-anm');
@@ -65,16 +65,29 @@ document.addEventListener("show", function(e){
 	      		$("#sectionFolio .toolbar button").removeClass("active");
 	      		// On ajoute la classe "active" au bouton qui est sélectionné
 	      		$("button[data-rel='" + selectedClass + "']").addClass("active");
-	      			
+
 	      		$("#portfolio").fadeTo(300, 1);
 
-	    	}, 300); 
-			
-		});	
-	}else if(page == "maps"){
+	    	}, 300);
+
+		});
+	} else if(page == "maps"){
 		// Si je suis sur écran map alors j'exécute la fonction permettant
 		// de l'afficher. 
 		showMap();
+	} else if(page == "accueil") {
+		setTimeout(function() {
+			$('#home-slider').slick({
+				"autoplay": false,
+				"adaptiveHeight": false,
+				"arrows": false,
+				"dots": true,
+
+			});
+
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+		},250);
+
 	}
 })
 
@@ -83,14 +96,21 @@ document.addEventListener("show", function(e){
 /* *********** */
 
 // Declare User object 
-let user = {};
+user = {};
 // Declare Map Object
-let map = {};
+map = {};
 
 // agencies list
-let agencies = [ {name : "Agence 1", lat : 43.602664, lon : 3.912220 }, 
-				 {name : "Agence 2", lat : 43.622886, lon : 3.900274 },
-				 {name : "Agence 3", lat : 43.588328, lon : 3.953201 }];
+agencies = [ {name : "La scène principale", lat : 48.85779, lon : 2.29526 },
+				 {name : "La scène N°3", lat : 48.85654, lon : 2.29910 },
+				 {name : "La scène N°2", lat : 48.85476, lon : 2.29878 }];
+// agencies list
+festivals = [ {name : "Le camping", lat : 48.85436, lon : 2.30208 },
+				 {name : "Le village", lat : 48.85355, lon : 2.30050 }];
+
+// agencies list
+wcs = [ {name : "WC scène principale ", lat : 48.85701, lon : 2.29482 },
+			{name : "Le village", lat : 48.85452, lon : 2.29935 }];
 
 function showMap(){
 	// Initiate Map
@@ -103,9 +123,11 @@ function showMap(){
     	maxZoom: 20
 	}).addTo(map);
 
-	map = map.setView([43.602664, 3.912220], 10);
+	map = map.setView([48.8560663, 2.2980761], 16);
 
 	mapAgencies();
+	mapwcs();
+	mapfestivals();
 	if(user.position.lat){
 		mapUser();
 	}
@@ -127,7 +149,7 @@ function mapUser(){
 function mapAgencies(){
 	// On créer un modèle d'icône
 	let agenceIcon = L.icon({
-		iconUrl: "img/store.png",
+		iconUrl: "img/stage.png",
 		iconSize: [32,32],
 		iconAnchor: [16,32],
 		popupAnchor: [0, -32]
@@ -135,27 +157,41 @@ function mapAgencies(){
 
 	agencies.forEach(function(agence){
 		let marker = L.marker( [agence.lat, agence.lon], {icon: agenceIcon} );
-		marker.bindPopup("Notre agence : " + agence.name);
+		marker.bindPopup("Trouvez ici : " + agence.name);
 		marker.addTo(map);
 	})
 }
 
+function mapfestivals(){
+	// On créer un modèle d'icône
+	let festivalIcon = L.icon({
+		iconUrl: "img/placeholder.png",
+		iconSize: [32,32],
+		iconAnchor: [16,32],
+		popupAnchor: [0, -32]
+	});
 
+	festivals.forEach(function(festival){
+		let marker = L.marker( [festival.lat, festival.lon], {icon: festivalIcon} );
+		marker.bindPopup(festival.name);
+		marker.addTo(map);
+	})
+}
 
+function mapwcs(){
+	// On créer un modèle d'icône
+	let wcIcon = L.icon({
+		iconUrl: "img/toilet.png",
+		iconSize: [32,32],
+		iconAnchor: [16,32],
+		popupAnchor: [0, -32]
+	});
 
+	wcs.forEach(function(wc){
+		let marker = L.marker( [wc.lat, wc.lon], {icon: wcIcon} );
+		marker.bindPopup(wc.name);
+		marker.addTo(map);
+	})
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');

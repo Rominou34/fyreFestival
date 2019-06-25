@@ -1,365 +1,139 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    
-        <!-- Accepte quasi toutes les langues et caractères spéciaux -->
-        <meta charset="utf-8">
-        <!-- Définit les règles de sécurité d'accès aux ressources pour votre app -->
-        <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; img-src 'self' http: https: *.openstreetmap.fr data:"> -->
-        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; media-src *; img-src * data:; script-src * 'unsafe-inline' 'unsafe-eval'; font-src * 'unsafe-inline' data:">
+	<head>
+		<!-- Accepte quasi toutes les langues et caractères spéciaux -->
+		<meta charset="utf-8">
+		<!-- Définit les règles de sécurité d'accès aux ressources pour votre app -->
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; img-src 'self' http: https: *.openstreetmap.fr data:"> -->
+		<meta http-equiv="Content-Security-Policy"
+			  content="default-src *; style-src * 'unsafe-inline'; media-src *; img-src * data:; script-src * 'unsafe-inline' 'unsafe-eval'; font-src * 'unsafe-inline' data:">
 
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        
-        <!-- FONTAWESOME -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        
-        <!-- ONSENUI -->
-        <link rel="stylesheet" type="text/css" href="library/onsen/css/onsenui.min.css">
-        <link rel="stylesheet" type="text/css" href="library/onsen/css/onsen-css-components.min.css">
-        <script src='library/onsen/js/onsenui.min.js'></script>
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport"
+			  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-        <!-- LEAFLET -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+		<!-- FONTAWESOME -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+			  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-           integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-           crossorigin=""></script>
-        
-        <!-- CSS PERSO  -->
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+		<!-- ONSENUI -->
+		<link rel="stylesheet" type="text/css" href="library/onsen/css/onsenui.min.css">
+		<link rel="stylesheet" type="text/css" href="library/onsen/css/onsen-css-components.min.css">
+		<script src='library/onsen/js/onsenui.min.js'></script>
 
-        <!-- TITLE DE L'APP -->
-        <title>TRAVEL</title>
-    </head>
-    <body>
+		<!-- LEAFLET -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+			  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+			  crossorigin=""/>
 
-        <ons-splitter>
-          <ons-splitter-side collapse id="menu" side="left" width="220px" >
-            <ons-page>
-              <p>Menu</p>
-              <ons-list>
-                <ons-list-item onclick="fn.load('accueil.html')" tappable>
-                  Accueil
-                </ons-list-item>
-                <ons-list-item onclick="fn.load('destinations.html')" tappable>
-                  Destinations
-                </ons-list-item>
-                <ons-list-item onclick="fn.load('maps.html')" tappable>
-                  Nous trouver
-                </ons-list-item>
-                <ons-list-item onclick="fn.load('about.html')" tappable>
-                  A Propos
-                </ons-list-item>
-              </ons-list>
-            </ons-page>
-          </ons-splitter-side>
+		<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+				integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+				crossorigin=""></script>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap" rel="stylesheet">
 
-          <ons-splitter-content id="content" page="accueil.html">
-            
-            <!-- ON DEPLACE LE NAVIGATOR DANS LE SPLITTER ! -->
-            <ons-navigator id="router" page="accueil.html"></ons-navigator>
-              
-          </ons-splitter-content>
-        </ons-splitter>
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 
-        <!--  TEMPLATE PAGE ACCUEIL -->
-        <template id="accueil.html">
-          <ons-page>
-            <ons-toolbar>
-              <div class="left">
-                <ons-toolbar-button onclick="fn.open()">
-                  <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
-              </div>
-              <div class="center">
-                TRAVEL HUNT
-              </div>
-            </ons-toolbar>
-            
-            <div class="monContenu">
-                
-                <section class="hero">
-                    
-                    <h1>WELCOME TO</h1> 
-                    <h2>You're going to like us</h2>
-                    <input type="text" placeholder="Where to ?">
+		<!-- CSS PERSO  -->
+		<link rel="stylesheet" type="text/css" href="css/index.css">
 
-                </section>
-                <section class="menuLogo">
-                    
-                    <div class="iconBox">
-                        
-                        <div class="iconBox_icon">
-                            <i class="fas fa-plane-departure"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            FLIGHT
-                        </p>
+		<!-- TITLE DE L'APP -->
+		<title>Fyre Festival</title>
+	</head>
+	<body>
 
-                    </div>
-                    <div class="iconBox">
-                        <div class="iconBox_icon">
-                            <i class="fas fa-train"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            TRAIN
-                        </p>
-                    </div>
-                    <div class="iconBox">
-                        <div class="iconBox_icon">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            CAR
-                        </p>
-                    </div>
-                    <div class="iconBox">
-                        <div class="iconBox_icon">
-                            <i class="fas fa-bed"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            HOTEL
-                        </p>
-                    </div>
+		<ons-splitter>
+			<ons-splitter-side collapse id="menu" side="left" width="220px" >
+				<ons-page>
+					<p style="margin: 0 !important; padding: 16px">Menu</p>
+					<ons-list>
+						<ons-list-item onclick="fn.load('accueil.html')" tappable>
+							Accueil
+						</ons-list-item>
+						<ons-list-item onclick="fn.load('maps.html')" tappable>
+							Carte
+						</ons-list-item>
+						<ons-list-item onclick="fn.load('programme.html')" tappable>
+							Programme et horaires
+						</ons-list-item>
+						<ons-list-item onclick="fn.load('faq.html')" tappable>
+							FAQ
+						</ons-list-item>
+						<ons-list-item onclick="fn.load('about.html')" tappable>
+							A Propos
+						</ons-list-item>
+					</ons-list>
+				</ons-page>
+			</ons-splitter-side>
 
-                </section>
-                <section class="blabla">
-                    
-                    <h2>WELCOME !</h2>
-                    <h3>Lorem ipsum dolor sit</h3>
-                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+			<ons-splitter-content id="content" page="accueil.html">
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas reiciendis enim pariatur debitis beatae corrupti voluptate neque quasi similique consequuntur suscipit repellendus deserunt labore porro odit, dignissimos libero maiores quia!</p>
-                </section>
-                    
+				<!-- ON DEPLACE LE NAVIGATOR DANS LE SPLITTER ! -->
+				<ons-navigator id="router" page="accueil.html"></ons-navigator>
+
+			</ons-splitter-content>
+		</ons-splitter>
+
+		<!--  TEMPLATE PAGE ACCUEIL -->
+		<template id="accueil.html">
+			<ons-page id="accueil">
+				<ons-toolbar>
+					<div class="left">
+						<ons-toolbar-button onclick="fn.open()">
+							<ons-icon icon="md-menu"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+					<div class="center">
+						Fyre Festival
+					</div>
+				</ons-toolbar>
+
+				<div class="home-content">
+					<section class="header">
+						<div class="home-top" style="background-image: url('img/eiffel_1.jpg')">
+							<div class="content">
+								<div class="logo-container">
+									<img src="img/Fyre_Festival_logo.png" alt="Logo">
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="presentation">
+						<div class="container">
+							<div class="content">
+								<h1>Fyre Festival</h1>
+								<h3>Le festival qui fout le feu</h3>
+								<p>Du <b>5</b> au <b>7 juillet</b> 2020</p>
+							</div>
+						</div>
+					</section>
+					<section class="viewer">
+						<div id="home-slider" class="slider">
+							<div class="slide" style="background-image: url('img/eiffel_2.jpg');">
+								<div class="content">
+									<h3>Un cadre unique et emblematique au pied de la Tour Eiffel</h3>
+								</div>
+							</div>
+							<div class="slide" style="background-image: url('img/eiffel.jpg')">
+								<div class="content">
+									<h3>Rendez-vous sur les Champs de Mars !</h3>
+								</div>
+							</div>
+							<div class="slide" style="background-image: url('img/aerial-shot-android-wallpaper-beach.jpg');">
+								<div class="content">
+									<h3>Les plus grands DJ de la planête seront là pour vous mettre le feu !</h3>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="meteo">
+						<a class="weatherwidget-io" href="https://forecast7.com/fr/48d862d35/paris/" data-label_1="PARIS" data-label_2="Météo" data-theme="original" >PARIS Météo</a>
+					</section>
+				</div>
+			</ons-page>
+		</template>
 
 
-            </div>
-
-
-          </ons-page>
-        </template>
-
-
-        <!--  TEMPLATE PAGE Destination -->
-        <template id="destinations.html">
-          <ons-page id="destinations">
-            <ons-toolbar>
-              <div class="left">
-                <ons-toolbar-button onclick="fn.open()">
-                  <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
-              </div>
-              <div class="center">
-                TRAVEL HUNT
-              </div>
-            </ons-toolbar>
-            
-            <div class="monContenu">
-                
-                <section class="hero">
-                    
-                    <h1>WELCOME TO</h1> 
-                    <h2>You're going to like us</h2>
-                    <input type="text" placeholder="Where to ?">
-                </section>
-                <section class="menuLogo">
-                    
-                    <div class="iconBox">
-                        
-                        <div class="iconBox_icon">
-                            <i class="fas fa-plane-departure"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            FLIGHT
-                        </p>
-
-                    </div>
-                    <div class="iconBox">
-                        <div class="iconBox_icon">
-                            <i class="fas fa-train"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            TRAIN
-                        </p>
-                    </div>
-                    <div class="iconBox">
-                        <div class="iconBox_icon">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            CAR
-                        </p>
-                    </div>
-                    <div class="iconBox">
-                        <div class="iconBox_icon">
-                            <i class="fas fa-bed"></i>
-                        </div>
-                        <p class="iconBox_Desc">
-                            HOTEL
-                        </p>
-                    </div>
-                </section>
-
-                
-                <!-- SECTION DESTINEE AU PORTFOLIO -->
-                <section id="sectionFolio">
-
-                  <div class="toolbar">
-                    <button class="btn fil-cat active" data-rel="all">All</button>
-                    <button class="btn fil-cat" data-rel="paris">Paris</button>
-                    <button class="btn fil-cat" data-rel="sydney">Sydney</button>
-                    <button class="btn fil-cat" data-rel="rome">Rome</button>
-                  </div> 
-                   
-                    
-                  <div id="portfolio">
-                    <div class="tile scale-anm paris all">
-                          <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/2-mon_1092-300x234.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm rome all">
-                      <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/jti-icons_08-300x172.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm paris all">
-                      <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/emi_haze-300x201.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm paris all">
-                              <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/codystretch-300x270.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm sydney all">
-                          <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm rome all">
-                              <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm sydney all">
-                      <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/jti-icons_08-300x172.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm sydney all">
-                      <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm paris all">
-                          <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm sydney all">
-                             <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" /> 
-                    </div>
-                    <div class="tile scale-anm paris all">
-                          <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/the-ninetys-brand_02-300x300.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm rome all">
-                              <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/15-dia_1092-1-300x300.jpg" alt="" />
-                    </div>
-                    <div class="tile scale-anm paris all">
-                         <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" /> 
-                    </div>
-                    <div class="tile scale-anm rome all">
-                            <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/emi_haze-300x201.jpg" alt="" />  
-                    </div>
-                    <div class="tile scale-anm paris all">
-                              <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />
-                    </div> 
-                    <div class="tile scale-anm paris all">
-                        <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />  
-                    </div> 
-                    <div class="tile scale-anm rome all">     
-                              <img src="http://demo.themerain.com/charm/wp-content/uploads/2015/04/transmission_01-300x300.jpg" alt="" />
-                    </div>
-                  </div>
-
-                                 
-  
-
-
-
-                </section>
-                <!-- FIN SECTION PORTFOLIO -->
-                
-            </div>
-
-
-          </ons-page>
-        </template>
-
-        <!--  TEMPLATE PAGE ABOUT -->
-        <template id="about.html">
-          <ons-page>
-            <ons-toolbar>
-              <div class="left">
-                <ons-toolbar-button onclick="fn.open()">
-                  <ons-icon icon="md-menu"></ons-icon>
-                </ons-toolbar-button>
-              </div>
-              <div class="center">
-                MENTIONS LEGALES
-              </div>
-            </ons-toolbar>
-
-            <strong>La seule contrepartie à l'utilisation de ces mentions légales, est l'engagement total à laisser le lien crédit subdelirium sur cette page de mentions légales.</strong><br />
-            <h2>Mentions légales</h2>
-            <h3>1. Présentation du site.</h3>
-            <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>
-            <p><strong>Propriétaire</strong> : Yoh – SASU – 15 rue des lanternes<br />
-            <strong>Créateur</strong>  : <a href="https://webylo.fr">YOh</a><br />
-            <strong>Responsable publication</strong> : Yoh – yohan@webylo.fr<br />
-            Le responsable publication est une personne physique ou une personne morale.<br />
-            <strong>Webmaster</strong> : Yohan – yohan@webylo.fr<br />
-            <strong>Hébergeur</strong> : O2SWITCH – CLERMONT-FERRAND<br />
-            Crédits : <br />
-            Le modèle de mentions légales est offert par Subdelirium.com <a target="_blank" href="https://www.subdelirium.com/generateur-de-mentions-legales/" alt="Modèle de mentions légales">Modèle de mentions légales</a></p>
-
-            <h3>2. Conditions générales d’utilisation du site et des services proposés.</h3>
-            <p>L’utilisation du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> sont donc invités à les consulter de manière régulière.</p>
-            <p>Ce site est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de maintenance technique peut être toutefois décidée par Yoh, qui s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention.</p>
-            <p>Le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> est mis à jour régulièrement par Yoh. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.</p>
-            <h3>3. Description des services fournis.</h3>
-            <p>Le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> a pour objet de fournir une information concernant l’ensemble des activités de la société.</p>
-            <p>Yoh s’efforce de fournir sur le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> des informations aussi précises que possible. Toutefois, il ne pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
-            <p>Tous les informations indiquées sur le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.</p>
-            <h3>4. Limitations contractuelles sur les données techniques.</h3>
-            <p>Le site utilise la technologie JavaScript.</p>
-            <p>Le site Internet ne pourra être tenu responsable de dommages matériels liés à l’utilisation du site. De plus, l’utilisateur du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas de virus et avec un navigateur de dernière génération mis-à-jour</p>
-            <h3>5. Propriété intellectuelle et contrefaçons.</h3>
-            <p>Yoh est propriétaire des droits de propriété intellectuelle ou détient les droits d’usage sur tous les éléments accessibles sur le site, notamment les textes, images, graphismes, logo, icônes, sons, logiciels.</p>
-            <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : Yoh.</p>
-            <p>Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
-            <h3>6. Limitations de responsabilité.</h3>
-            <p>Yoh ne pourra être tenue responsable des dommages directs et indirects causés au matériel de l’utilisateur, lors de l’accès au site TRAVEL HUNT, et résultant soit de l’utilisation d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou d’une incompatibilité.</p>
-            <p>Yoh ne pourra également être tenue responsable des dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a>.</p>
-            <p>Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition des utilisateurs. Yoh se réserve le droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en particulier aux dispositions relatives à la protection des données. Le cas échéant, Yoh se réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le support utilisé (texte, photographie…).</p>
-            <h3>7. Gestion des données personnelles.</h3>
-            <p>En France, les données personnelles sont notamment protégées par la loi n° 78-87 du 6 janvier 1978, la loi n° 2004-801 du 6 août 2004, l'article L. 226-13 du Code pénal et la Directive Européenne du 24 octobre 1995.</p>
-            <p>A l'occasion de l'utilisation du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a>, peuvent êtres recueillies : l'URL des liens par l'intermédiaire desquels l'utilisateur a accédé au site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a>, le fournisseur d'accès de l'utilisateur, l'adresse de protocole Internet (IP) de l'utilisateur.</p>
-            <p> En tout état de cause Yoh ne collecte des informations personnelles relatives à l'utilisateur que pour le besoin de certains services proposés par le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a>. L'utilisateur fournit ces informations en toute connaissance de cause, notamment lorsqu'il procède par lui-même à leur saisie. Il est alors précisé à l'utilisateur du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> l’obligation ou non de fournir ces informations.</p>
-            <p>Conformément aux dispositions des articles 38 et suivants de la loi 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, tout utilisateur dispose d’un droit d’accès, de rectification et d’opposition aux données personnelles le concernant, en effectuant sa demande écrite et signée, accompagnée d’une copie du titre d’identité avec signature du titulaire de la pièce, en précisant l’adresse à laquelle la réponse doit être envoyée.</p>
-            <p>Aucune information personnelle de l'utilisateur du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de Yoh et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a>.</p>
-            <p>Le site n'est pas déclaré à la CNIL car il ne recueille pas d'informations personnelles. .</p>
-            <p>Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>
-            <h3>8. Liens hypertextes et cookies.</h3>
-            <p>Le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> contient un certain nombre de liens hypertextes vers d’autres sites, mis en place avec l’autorisation de Yoh. Cependant, Yoh n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce fait.</p>
-            <p>La navigation sur le site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> est susceptible de provoquer l’installation de cookie(s) sur l’ordinateur de l’utilisateur. Un cookie est un fichier de petite taille, qui ne permet pas l’identification de l’utilisateur, mais qui enregistre des informations relatives à la navigation d’un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de fréquentation.</p>
-            <p>Le refus d’installation d’un cookie peut entraîner l’impossibilité d’accéder à certains services. L’utilisateur peut toutefois configurer son ordinateur de la manière suivante, pour refuser l’installation des cookies :</p>
-            <p>Sous Internet Explorer : onglet outil (pictogramme en forme de rouage en haut a droite) / options internet. Cliquez sur Confidentialité et choisissez Bloquer tous les cookies. Validez sur Ok.</p>
-            <p>Sous Firefox : en haut de la fenêtre du navigateur, cliquez sur le bouton Firefox, puis aller dans l'onglet Options. Cliquer sur l'onglet Vie privée.
-              Paramétrez les Règles de conservation sur :  utiliser les paramètres personnalisés pour l'historique. Enfin décochez-la pour  désactiver les cookies.</p>
-            <p>Sous Safari : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par un rouage). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section "Confidentialité", cliquez sur Paramètres de contenu. Dans la section "Cookies", vous pouvez bloquer les cookies.</p>
-            <p>Sous Chrome : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par trois lignes horizontales). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section "Confidentialité", cliquez sur préférences.  Dans l'onglet "Confidentialité", vous pouvez bloquer les cookies.</p>
-
-            <h3>9. Droit applicable et attribution de juridiction.</h3>
-            <p>Tout litige en relation avec l’utilisation du site <a href="http://TRAVEL HUNT/">TRAVEL HUNT</a> est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.</p>
-            <h3>10. Les principales lois concernées.</h3>
-            <p>Loi n° 78-17 du 6 janvier 1978, notamment modifiée par la loi n° 2004-801 du 6 août 2004 relative à l'informatique, aux fichiers et aux libertés.</p>
-            <p> Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>
-            <h3>11. Lexique.</h3>
-            <p>Utilisateur : Internaute se connectant, utilisant le site susnommé.</p>
-            <p>Informations personnelles : « les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).</p>
-
-          </ons-page>
-        </template>
-
-        <!--  TEMPLATE PAGE ABOUT -->
         <template id="maps.html">
           <ons-page id="maps">
 
@@ -370,7 +144,7 @@
                 </ons-toolbar-button>
               </div>
               <div class="center">
-                Nos Agences
+                Plan du festival
               </div>
             </ons-toolbar>
 
@@ -380,14 +154,396 @@
 
           </ons-page>
         </template>
-        
-        <script type="text/javascript" src="cordova.js"></script>
-        
-        <!-- Intégration de JQUERY -->
-        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+		<!--  TEMPLATE PAGE ABOUT -->
+        <style media="screen">
+			#portfolio {
+				align-items: stretch !important;
+			}
+			#portfolio > div {
+			  flex: 1 0 250px;
+			}
+			#portfolio > div > div:last-child {
+				height: 200px;
+			}
+        </style>
+		<template id="programme.html">
+          <ons-page id="programme" style="background-image: url('img/fond-matiere-2019.jpg') !important; background-size: cover !important; background-position: right bottom !important;">
+
+             <ons-toolbar>
+              <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                  <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+              </div>
+              <div class="center">
+				  Programme et horaires
+              </div>
+            </ons-toolbar>
+
+            <div class="monContenu">
+
+                <!-- SECTION DESTINEE AU PORTFOLIO -->
+                <section id="sectionFolio"  style="width: 100%; max-width: 925px; margin: 0 auto;">
+
+                  <div class="toolbar" style="height: 100%;padding: 30px; margin-top:60px; width: 100%; display: flex; flex-direction: row;  justify-content: center;  align-items: center; flex-wrap: wrap;">
+                    <button class="btn fil-cat active" data-rel="all" style="padding:15px 25px; border-radius: 5px; margin: 5px;">All</button>
+                    <button class="btn fil-cat" data-rel="paris" style="padding:15px 25px; border-radius: 5px; margin: 5px;">Vendredi 5 Juillet</button>
+                    <button class="btn fil-cat" data-rel="sydney" style="padding:15px 25px; border-radius: 5px; margin: 5px;">Samedi 6 Juillet</button>
+                    <button class="btn fil-cat" data-rel="rome" style="padding:15px 25px; border-radius: 5px; margin: 5px;">Dimanche 7 Juillet</button>
+                  </div>
+
+
+                  <div id="portfolio" style="padding-bottom: 40px; align-item: stretch;">
+                    <div class="tile scale-anm paris all" style="width:33,33%">
+                        <div style="height: 202px;/* max-width: 100%; */background-image: url('img/alphawann.jpg'); background-size: cover;"></div>
+                        <div class="" style="background-color: #ff7617; color: #fff;">
+                          <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Alpha Wann</h1>
+                          <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Scène extérieure</p>
+                          <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                        </div>
+                    </div>
+                    <div class="tile scale-anm rome all">
+                      <div style="height: 202px;/* max-width: 100%; */background-image: url('img/arnavd.jpg'); background-size: cover;"></div>
+                      <div class="" style="background-color: #ff8734; color: #fff;">
+                        <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Arnavd</h1>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Grand Palais</p>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">21h15>22h</p>
+                      </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                        <div style="height: 202px;/* max-width: 100%; */background-image: url('img/asap.jpg'); background-size: cover;"></div>
+                        <div class="" style="background-color: #ff9348; color: #fff;">
+                          <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Asap Rocky</h1>
+                          <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Petit Palais</p>
+                          <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>21h</p>
+                        </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                                <div style="height: 202px;/* max-width: 100%; */background-image: url('img/ateyaba.jpg'); background-size: cover;"></div>
+                                <div class="" style="background-color: #ff7617; color: #fff;">
+                                  <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Ateyaba</h1>
+                                  <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Scène extérieure</p>
+                                  <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                                </div>
+                    </div>
+                    <div class="tile scale-anm sydney all">
+                          <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/aya.jpg'); background-size: cover;"></div>
+                          <div class="" style="background-color: #ff8734; color: #fff;">
+                            <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Aya Nakamura</h1>
+                            <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Grand Palais</p>
+                            <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                          </div>
+                    </div>
+                    <div class="tile scale-anm rome all">
+                            <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/chirac.jpg'); background-size: cover;"></div>
+                            <div class="" style="background-color: #ff9348; color: #fff;">
+                              <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Chirac</h1>
+                              <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Petit Palais</p>
+                              <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                            </div>
+                    </div>
+                    <div class="tile scale-anm sydney all">
+                      <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/damso.jpg'); background-size: cover;"></div>
+                      <div class="" style="background-color: #ff7617; color: #fff;">
+                        <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Damso</h1>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Scène extérieure</p>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                      </div>
+                    </div>
+                    <div class="tile scale-anm sydney all">
+                      <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/djsnake.jpg'); background-size: cover;"></div>
+                      <div class="" style="background-color: #ff8734; color: #fff;">
+                        <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">DJ Snake</h1>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Grand Palais</p>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                      </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                          <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/dosseh.png'); background-size: cover;"></div>
+                          <div class="" style="background-color: #ff9348; color: #fff;">
+                            <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Alpha Wann</h1>
+                            <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Petit Palais</p>
+                            <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                          </div>
+                    </div>
+                    <div class="tile scale-anm sydney all">
+                            <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/eminem.jpg'); background-size: cover;"></div>
+                            <div class="" style="background-color: #ff7617; color: #fff;">
+                              <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Eminem</h1>
+                              <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Scène extérieure</p>
+                              <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                            </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                          <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/iamddb.jpg'); background-size: cover;"></div>
+                          <div class="" style="background-color: #ff8734; color: #fff;">
+                            <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">IAMDDB</h1>
+                            <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Grand Palais</p>
+                            <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                          </div>
+                    </div>
+                    <div class="tile scale-anm rome all">
+                              <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/josman.jpg'); background-size: cover;"></div>
+                              <div class="" style="background-color: #ff9348; color: #fff;">
+                                <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Josman</h1>
+                                <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Petit Palais</p>
+                                <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                              </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                         <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/nekfeu.jpg'); background-size: cover;"></div>
+                         <div class="" style="background-color: #ff7617; color: #fff;">
+                           <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Nekfeu</h1>
+                           <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Scène extérieure</p>
+                           <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                         </div>
+                    </div>
+                    <div class="tile scale-anm rome all">
+                            <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/ricoune.jpg'); background-size: cover;"></div>
+                            <div class="" style="background-color: #ff8734; color: #fff;">
+                              <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Ricoune</h1>
+                              <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Grand Palais</p>
+                              <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                            </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                              <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/stephane.jpg'); background-size: cover;"></div>
+                              <div class="" style="background-color: #ff9348; color: #fff;">
+                                <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Ouais Stéphane</h1>
+                                <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Petit Palais</p>
+                                <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                              </div>
+                    </div>
+                    <div class="tile scale-anm paris all">
+                        <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/zztop.jpg'); background-size: cover;"></div>
+                        <div class="" style="background-color: #ff7617; color: #fff;">
+                          <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">ZZ Top</h1>
+                          <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Scène extérieure</p>
+                          <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                        </div>
+                    </div>
+                    <div class="tile scale-anm rome all">
+                      <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/jul.jpg'); background-size: cover;"></div>
+                      <div class="" style="background-color: #ff8734; color: #fff;">
+                        <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">JUL</h1>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Grand Palais</p>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                      </div>
+                    </div>
+                    <div class="tile scale-anm rome all">
+                      <div style="height: 202px;/* max-width: 100%; */ background-image: url('img/zou.jpg'); background-size: cover;"></div>
+                      <div class="" style="background-color: #ff9348; color: #fff;">
+                        <h1 style="font-size:36px; margin-left: 10px; padding-bottom: 10px; margin-right: 15px; margin-bottom: 10px; margin-top:0; padding-top: 20px; border-bottom: 1px solid #fff;">Zou</h1>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 7px; margin-right: 15px; margin-top: 13px; margin-bottom: 0;">Petit Palais</p>
+                        <p style="font-size:18px; margin-left: 10px; padding-bottom: 15px; margin-right: 15px; margin-top: 0; margin-bottom: 0;">20h15>22h</p>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+                </section>
+                <!-- FIN SECTION PORTFOLIO -->
+
+            </div>
+          </ons-page>
+        </template>
+
+		<!--  TEMPLATE PAGE ABOUT -->
+		<template id="faq.html">
+			<ons-page id="faq" style="background-image: url('img/fond-matiere-2019.jpg') !important; background-size: cover !important; background-position: right bottom !important;">
+
+				<ons-toolbar>
+					<div class="left">
+						<ons-toolbar-button onclick="fn.open()">
+							<ons-icon icon="md-menu"></ons-icon>
+						</ons-toolbar-button>
+					</div>
+					<div class="center">
+						FAQ
+					</div>
+				</ons-toolbar>
+
+				<ons-list>
+					<ons-list-header>
+						Questions générales
+					</ons-list-header>
+					<ons-list-item expandable chevron>
+						Où et quand se déroule le Fyre Festival
+						<div class="expandable-content">
+							<p class="bold">LES DATES</p>
+							<p>
+								5 juillet 2019 - 7 juillet 2019
+							</p>
+							<p class="bold">LOCALISATION</p>
+							<p>
+								Le Fyre Festival se déroule sur le champ de Mars à Paris, en France.
+							</p>
+						</div>
+					</ons-list-item>
+					<ons-list-item expandable chevron>
+						Quel est l'âge minimum pour participer ?
+						<div class="expandable-content">
+							Il faut être né(e) en 2001 et avoir 18 ans en 2019.
+							Dans ce cas, même si votre anniversaire tombe après le festival, vous êtes le/la bienvenu(e).
+							Si vous êtes plus jeune que décrit ci-dessus, il faudra attendre car même accompagné d’un adulte vous n’aurez pas la permission d’accéder au festival.
+						</div>
+					</ons-list-item>
+					<ons-list-item expandable chevron>
+						Quels sont les horaires d'entrée ?
+						<div class="expandable-content">
+							<ul>
+								<li>Le vendredi et samedi, l’accès au festival est possible jusqu’à 22h. L’accès au festival vous sera interdit si vous arrivez après 22h.</li>
+								<li>Attention! Le dimanche,  l’accès au festival est possible jusqu’à 21h. Si vous arrivez après 21h, l’accès au festival vous sera interdit.</li>
+							</ul>
+						</div>
+					</ons-list-item>
+					<ons-list-item expandable chevron>
+						Est-ce que je peux réentrer dans le festival ?
+						<div class="expandable-content">
+							Non, toute sortie du festival est définitive.
+						</div>
+					</ons-list-item>
+					<ons-list-item expandable chevron>
+						Y a-t-il un parking disponible ?
+						<div class="expandable-content">
+							Le festival dispose de deux parkings réservés. Afin d'y accéder, vous devrez acheter un pass parking et l'imprimer
+						</div>
+					</ons-list-item>
+				</ons-list>
+
+				<ons-list>
+					<ons-list-header>
+						Sur place
+					</ons-list-header>
+					<ons-list-item expandable chevron>
+						Sécurité
+						<div class="expandable-content">
+							<p>
+								Pour votre confort, votre sécurité et le bon déroulement de l’événement, le festival travaille avec toutes les autorités compétentes à la mise en place d’un dispositif de sécurité adapté au site du Parc Chanot.
+							</p>
+							<p>
+								<b>Une fouille des sacs sera réalisée à votre arrivée.</b>
+								Si le personnel de sécurité estime que la palpation est nécessaire pour assurer la sécurité des biens et des personnes, chaque individu souhaitant accéder au site du festival devra s’y conformer.
+							</p>
+						</div>
+					</ons-list-item>
+					<ons-list-item expandable chevron>
+						Restauration
+						<div class="expandable-content">
+							<p>
+								Le Village Restauration du Fyre vous propose cette année une grande diversité de saveurs, pour encore plus de plaisir gustatif.
+							</p>
+							<p>
+								Plusieurs food trucks seront présents sur le site du festival avec des offres variées : de quoi reprendre des forces pour les concerts tout en régalant vos papilles !
+							</p>
+						</div>
+					</ons-list-item>
+					<ons-list-item expandable chevron>
+						Objets perdus
+						<div class="expandable-content">
+							<p>
+								Si vous perdez (ou trouvez) quelque chose lros du festival, dirigez-vous vers l'accueil ou un des nombreux points d'information afin de le signaler.
+							</p>
+						</div>
+					</ons-list-item>
+				</ons-list>
+
+			</ons-page>
+		</template>
+
+
+        <!--  TEMPLATE PAGE ABOUT -->
+        <template id="about.html">
+          <ons-page id="infos" style="background-image:url(img/FyreFestival.jpg) !important; background-position: center !important">
+            <ons-toolbar>
+              <div class="left">
+                <ons-toolbar-button onclick="fn.open()">
+                  <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+              </div>
+              <div class="center">
+                Informations Générales
+              </div>
+            </ons-toolbar>
+        
+              <h2 style="font-family: 'Montserrat'; text-align: center; color: #FF7617;padding-top: 30px;"><b>C'est quoi le Fyre Festival ?</b></br></h2>
+              <h3 style="font-family: 'Montserrat'; text-align: center;"><b>Le festival qui fout le feu !</b></h3></br></br>
+            <p style="font-family: 'Montserrat'; text-align: center; padding-left: 15%; padding-right: 15%"><b>Fyre Festival</b> favorise l’émergence de talents locaux et régionaux en faisant le choix, depuis quelques années, de placer la création au cœur de ses préoccupations et en affirmant une réelle volonté de devenir le sol sur lequel germent et poussent de nouveaux projets artistiques.<br><br>
+
+Pour ce faire, <b>Fyre Festival</b> accompagne le développement de jeunes artistes, crée le cadre de promotion de leurs œuvres et d’épanouissement de leurs carrières, permet la création de répertoires inédits et leur offre la formidable expérience des scènes et du public du festival.<br><br>
+
+Autant d’engagements qui témoignent d’une volonté forte de proposer un contenu unique, qui ne pourrait exister sans la volonté du festival de le soutenir, d’en être le créateur ou du moins le révélateur.<br><br>
+
+<b>Fyre Festival</b> entend ainsi régulièrement mettre ses moyens, ses réseaux et son expérience au service des créateurs de la région, qu’il s’agisse de créations, avec la collection Mixatac qui a embarqué entre 2008 et 2012 des artistes marseillais (Alif Tree, David Walters, Fred Nevchehirlian, Nasser) à la rencontre des scènes musicales de Bamako, Beyrouth et Essaouira… ou plus récemment de co-production, avec le nouveau spectacle de Fred Nevchehirlian, en 2013 et 2014.<br><br>
+
+A l’occasion de ses 20 ans, en co-production avec De Concert! et avec le soutien de l’Adami, <b>Fyre Festival</b>, ainsi que Dour Festival pour ses 30 ans et Nördik Impakt pour ses 20 ans aussi, montent ensemble un projet de création embarquant chacun un artiste représentatif de leur territoire. Gangue réunit ainsi les producteurs de La Fine Equipe, Haring et Fulgeance, six artistes artistes de front derrière leurs machines pour 3 dates exclusives sur les scènes des festivals créateurs et d’autres dates à venir.<br><br>
+
+<b>Fyre Festival</b> a toujours poursuivi l’objectif de connecter, de transmettre et de défricher. Pour l’édition 2019, le festival propose un nouvel espace d’expression dédié exclusivement à l’émergence artistique locale. La Frappe est un projet voulant faire le lien entre les différentes zones de la ville, elle donne la parole à des jeunes artistes rap et hip-hop venus du nord, du sud, du centre-ville et des alentours. Ce projet est le fruit d’un travail collectif entre <b>Fyre Festival</b> et 4 structures locales : La Stud, Twerkistan, Synergie Family et Only Pro.<br><br></p>
+            
+          </ons-page>
+        </template>
+
+		<script type="text/javascript" src="cordova.js"></script>
+
+		<!-- Intégration de JQUERY -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+		<script type="text/javascript" src="js/index.js"></script>
+
+		<!-- STYLE FAQ !-->
+		<style>
+			#faq ons-list {
+				margin: 24px;
+			}
+			#faq ons-list-header {
+				background-color: #FF7617;
+				color: #fff;
+				padding: 16px;
+				font-size: 125%;
+				font-weight: bold;
+				background-image: none !important;
+			}
+			#faq ons-list-item {
+				padding: 8px 32px;
+				background-image: none;
+			}
+			#faq ons-list-item .top {
+				font-weight: bold;
+				box-sizing: border-box;
+			}
+			#faq ons-list-item .top:hover {
+				color: #FF7617;
+				cursor: pointer;
+			}
+			#faq ons-list-item .expandable-content {
+				padding: 0 32px;
+				border-left: 2px solid #FF7617;
+				margin: 18px 64px !important;
+			}
+			#faq .list-item__expand-chevron {
+				border-color: #FF7617;
+			}
+
+			ons-page#faq .page__background,
+			ons-page#programme .page__background {
+				background-color: transparent !important;
+			}
+			ons-page#infos .page__background {
+                background-color: rgba(255,255,255,0.85);
+            }
+		</style>
+	</body>
+
+<!-- Intégration de JQUERY -->
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </html>
 
 
