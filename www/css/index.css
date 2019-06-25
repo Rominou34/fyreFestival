@@ -279,3 +279,13 @@ body section h1, body section h2, body section h3, body section h4, body section
 *:not(ons-icon) {
 	font-family: Montserrat !important;
 }
+
+.toolbar {
+	height: 52px !important;
+}
+.toolbar > * {
+	line-height: 51px !important;
+}
+.toolbar__title {
+	font-weight: bold;
+}
